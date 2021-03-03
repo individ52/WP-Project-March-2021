@@ -1,3 +1,4 @@
+window.addEventListener('DOMContentLoaded', function() {
 $('.nav_burger').click(function(){
     $('.overlay').slideToggle('show');
 });
@@ -37,7 +38,7 @@ var swiper = new Swiper('.swiper-container',{
     }
 });
 
-window.addEventListener('DOMContentLoaded', function() {
+
     let tabs = document.querySelectorAll('.catalog_tabs_item'),
     catalogs = document.querySelectorAll('.catalog_items'),
     formorder = document.querySelector('.order_wrapper'),
