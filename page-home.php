@@ -203,16 +203,21 @@ if($catalog_products_query->have_posts()) :
     <div class="container">
         <h2>Каталог</h2>
         <ul class="catalog_tabs">
-            <li class="catalog_tabs_item">Simple</li>
-            <li class="catalog_tabs_item">SIMPLE ALCANTARA</li>
-            <li class="catalog_tabs_item">ADVANCED</li>
-            <li class="catalog_tabs_item">ADVANCED ALCANTARA</li>
+            <?php 
+                $catalog_nav_items = get_terms([
+                    'taxonomy' => 'product-categories',
+                    'parent'   => 0,
+                ]);
+            ?>
+            <?php 
+                foreach($catalog_nav_items as $item) :
+            ?>
+            <li class="catalog_tabs_item" data-category-name="<?php echo $item->slug; ?>"><?php echo $item->name; ?></li>
+            <?php 
+            endforeach; 
+        ?>
         </ul>
         <ul class="catalog_items">
-            <?php 
-               
-                echo ($catalog_products_query->have_posts());
-            ?>
             <?php 
             while($catalog_products_query->have_posts()) : $catalog_products_query->the_post();
             ?>

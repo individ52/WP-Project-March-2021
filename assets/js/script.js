@@ -54,6 +54,11 @@ var swiper = new Swiper('.swiper-container',{
     catalogs[i].style.display = "none";
   }
   catalogs[0].style.display = "flex";
+  catalogs[0].style.display = "flex";
+  catalogs[0].style.display = "flex";
+  catalogs[0].style.display = "flex";
+  catalogs[0].style.display = "flex";
+
   document.querySelector('.catalog_tabs').addEventListener('click', function (e) {
     let target = e.target;
     if (target.classList.contains('catalog_tabs_item') && !target.classList.contains('catalog_tabs_item_active')) {
