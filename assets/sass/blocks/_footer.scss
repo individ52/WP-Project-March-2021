@@ -1,0 +1,38 @@
+.footer {
+    padding: 20px;
+    background: #E5E5E5;
+    &_wrapper {
+        display: flex;
+    }
+    &_logo {
+        display: block;
+        text-align: center;
+        width: 150px;
+        margin: 0 auto;
+        font-size: 22px;
+        text-transform: uppercase;
+        span {
+            font-weight: bold;    
+        }
+    }
+    &_contacts {
+        & h3 {
+            margin-bottom: 12px;
+        }
+        & a {
+            margin-bottom: 12px;
+        }
+    }
+    &_social {
+        margin-left: auto;
+        & h3 {
+            margin-bottom: 12px;
+        }
+        &_icons {
+            display: block;
+            margin-left: auto;
+            width: 102px;
+        }
+
+    }
+}

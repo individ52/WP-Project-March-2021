@@ -1,0 +1,43 @@
+.example {
+    & h2 {
+        margin-bottom: 40px;
+    }
+}
+.swiper {
+    &-container {
+        padding: 40px 0;
+    }
+    &-slide {
+        height: 550px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & img {
+            width: 80%;
+            min-width: 0;
+        }
+        &-next {
+            & img {
+                width: 100%;
+                filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.5));
+                border-radius: 21px;
+            }
+        }
+    }
+    &-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 33px;
+        height: 33px;
+        z-index: 2;
+        &-n {
+            right: 0;
+            background: url(../img/icon/next.svg);
+        }
+        &-p {
+            left: 0;
+            background: url(../img/icon/prev.svg);
+        }
+    }
+}

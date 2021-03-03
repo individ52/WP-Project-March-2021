@@ -1,0 +1,13 @@
+.btn {
+    background: #237CBC;
+    box-shadow: 0px 16px 25px -8px rgba(35, 124, 188, 0.43);
+    border-radius: 21px;
+    font-size: 20px;
+    color:white;
+    &:hover {
+        background: #5e5163;
+    }
+    &_offer {
+        padding: 23px 54px;
+    }
+}
