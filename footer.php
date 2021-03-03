@@ -1,6 +1,7 @@
-<footer class="footer">
+
+<footer class="footer" style="display: block;">
         <div class="container">
-            <a href="#" class="footer_logo">
+            <a href="#" class="nav_logo footer_logo">
                 <span>seat</span>covers
             </a>
             <div class="footer_wrapper">
@@ -25,22 +26,31 @@
                 </div>
             </div>
         </div>
-    </footer>
+</footer>   
     <?php wp_footer(); ?>
-    <!-- Mobile menu -->
-    <div class="overlay">
-            <ul class="menumobile">
-                <li class="menumobile_item"><a href="#product">О продукции</a></li>
-                <li class="menumobile_item"><a href="#materials">Материалы</a></li>
-                <li class="menumobile_item"><a href="#">Примеры работ</a></li>
-                <li class="menumobile_item"><a href="#">Установка</a></li>
-                <li class="menumobile_item"><a href="#">Каталог</a></li>
-            </ul>
-            <ul class="nav_lang nav_lang_mobile">
-                <li class="nav_lang_item nav_lang_item_mobile nav_lang_item_disabled"><a href="#">EST</a></li>
-                <li class="nav_lang_item nav_lang_item_mobile"><a href="#">RUS</a></li>
-            </ul>
-    </div>
+<!-- Mobile menu -->
+<div class="overlay">
+        <ul class="menumobile">
+            <li class="menumobile_item"><a href="#product">О продукции</a></li>
+            <li class="menumobile_item"><a href="#materials">Материалы</a></li>
+            <li class="menumobile_item"><a href="#">Примеры работ</a></li>
+            <li class="menumobile_item"><a href="#">Установка</a></li>
+            <li class="menumobile_item"><a href="#">Каталог</a></li>
+        </ul>
+        <ul class="nav_lang nav_lang_mobile">
+            <li class="nav_lang_item nav_lang_item_mobile nav_lang_item_disabled"><a href="#">EST</a></li>
+            <li class="nav_lang_item nav_lang_item_mobile"><a href="#">RUS</a></li>
+        </ul>
+</div>
+<!-- Modal -->
+<div id="ex1" class="modal modal_form">
+    <form action="#" class="form_modal">
+        <h3>Заполните форму</h3>
+        <input type="text" placeholder="Имя" name="modal_name" id="modal_name">
+        <input type="tel" name="modal_tel" id="modal_tel" placeholder="Телефон">
+        <button type="submit" class="btn btn_modal">Заказать</button>
+    </form>
+</div>
     <?php wp_footer(); ?>
 </body>
 </html>

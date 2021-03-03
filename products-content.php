@@ -1,6 +1,6 @@
 <?php
 $product_id = get_the_ID(); 
-$product_src = get_the_post_thumbnail_url($product_id, 'thumbnail');
+$product_src = get_the_post_thumbnail_url($product_id, 'thumbnails');
 $product_categories = get_the_terms($product_id, 'product-categories');
 $product_categories_slugs = '';
 $product_categories_descr = '';

@@ -1,3 +1,4 @@
+
 <?php
 add_filter('show_admin_bar', '__return_false');
 
@@ -22,9 +23,11 @@ function seatcovers_styles() {
     wp_enqueue_style( 'google-fonts-1', "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap", [], $version);
     wp_enqueue_style( 'google-fonts-2', "https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap", [], $version);
     wp_enqueue_style('swiper-bundle', 'https://unpkg.com/swiper/swiper-bundle.min.css', [], $version);
+    wp_enqueue_style('jquery-modal', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css', [], $version);
     wp_enqueue_style( 'main-style', get_stylesheet_uri(), [], $version);
-
+    
     wp_enqueue_script( 'jquery-script', get_template_directory_uri().'/assets/js/jquery-3.5.1.min.js', [], $version, true);
+    wp_enqueue_script( 'jquery-modal', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js', array(), $version, true);
     wp_enqueue_script( 'masket', get_template_directory_uri().'/assets/js/jquery.maskedinput.min.js', array('jquery-script'), $version, true);
     wp_enqueue_script( 'swiper', 'https://unpkg.com/swiper/swiper-bundle.min.js', array(), $version, true);
     wp_enqueue_script( 'main-script', get_template_directory_uri().'/assets/js/script.js', array('jquery-script'), $version, true);
@@ -35,8 +38,8 @@ function seatcovers_styles() {
 add_action('after_setup_theme', 'register_menu');
 function register_menu() {
     register_nav_menu('main_header_menu', 'Меню в шапке');
-    add_theme_support('post-thumbnails');
-    add_image_size('product', 198, 198, true);
+    add_theme_support( 'post-thumbnails' );
+    set_post_thumbnail_size( 150, 150, true );
 
 }
 
