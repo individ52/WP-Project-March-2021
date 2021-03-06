@@ -4,7 +4,6 @@
 */
 ?>
 <?php 
-    $page_id = get_the_ID(); 
     $catalog_products = carbon_get_post_meta($page_id,'catalog_products');
     $catalog_products_ids = wp_list_pluck($catalog_products ,'id');
 
@@ -13,21 +12,25 @@
         'post__in' => $catalog_products_ids,
     ];
     $catalog_products_query = new WP_Query( $catalog_products_query_args ); 
-    echo '<pre>';
-    // print_r($catalog_products_query);
-    echo '</pre>'
+
 ?>
+<?php $page_id = get_the_ID();  ?>
 <?php get_header(); ?>
+
 <section class="offer">
+<?php
+        echo '<pre>';
+        echo '</pre>'
+?>
     <div class="container">
         <div class="offer_wrapper">
             <h1 class="offer_title">
-                Автомобильные чехлы для сидений
+                <?php echo carbon_get_post_meta($page_id, 'top_title'); ?>
             </h1>
             <p class="offer_desc">
-                Новый салон Вашего автомобиля. Быстро! Красиво! Недорого!
+            <?php echo carbon_get_post_meta($page_id, 'top_subtitle'); ?>
             </p>
-            <button class="btn btn_offer">Заказть звонок</button>
+            <button class="btn btn_offer"><?php echo carbon_get_post_meta($page_id, 'top_btn_text'); ?></button>
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/offerbg.svg" alt="background" class="offer_bg">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/car.svg" alt="car" class="offer_car">
             <div class="offer_map">
@@ -132,10 +135,10 @@
             </div>
             <div class="materials_promo_mobile_desc">
                 <h3 class="materials_promo_mobile_desc_title">
-                    Экокожа "Аригон" с перфорацией
+                <?php echo carbon_get_post_meta($page_id, 'materials-type_1-title') ?>
                 </h3>
                 <p class="materials_promo_mobile_desc_text">
-                    Высококачественный автомобильный кожзам с перфорацией
+                <?php echo carbon_get_post_meta($page_id, 'materials-type_1-text') ?>
                 </p>
             </div>
         </div>
@@ -145,10 +148,10 @@
             </div>
             <div class="materials_promo_mobile_desc">
                 <h3 class="materials_promo_mobile_desc_title">
-                    Алькантара
+                    <?php echo carbon_get_post_meta($page_id, 'materials-type_2-title') ?>
                 </h3>
                 <p class="materials_promo_mobile_desc_text">
-                    Искусственная замша. Обладает высокой практичностью и люксовым внешним видом
+                    <?php echo carbon_get_post_meta($page_id, 'materials-type_2-text') ?>
                 </p>
             </div>
         </div>
@@ -158,10 +161,10 @@
             </div>
             <div class="materials_promo_mobile_desc">
                 <h3 class="materials_promo_mobile_desc_title">
-                    Ячеистый велюр (федерер)
+                    <?php echo carbon_get_post_meta($page_id, 'materials-type_3-title') ?>
                 </h3>
                 <p class="materials_promo_mobile_desc_text">
-                    Плотная велюровая ткань с ячеистой структурой.
+                    <?php echo carbon_get_post_meta($page_id, 'materials-type_3-text') ?>
                 </p>
             </div>
         </div>
@@ -201,7 +204,7 @@ if($catalog_products_query->have_posts()) :
 ?>
 <section id="catalog" class="catalog">
     <div class="container">
-        <h2>Каталог</h2>
+        <h2><?php echo carbon_get_post_meta($page_id,'catalog_title') ?></h2>
         <ul class="catalog_tabs">
             <?php 
                 $catalog_nav_items = get_terms([
@@ -236,7 +239,7 @@ endif;
     <div class="container">
 
         <div class="order_block">   
-                <h2 class="order_block_title">Оставить заявку</h2>
+                <h2 class="order_block_title"><?php echo carbon_get_post_meta($page_id, 'form_title'); ?></h2>
                 <?php 
                     echo do_shortcode('[contact-form-7 id="64" title="Main form"]');
                     // echo do_shortcode('[contact-form-7 id="66" title="control form"]');

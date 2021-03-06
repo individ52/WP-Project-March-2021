@@ -2,10 +2,10 @@ window.addEventListener('DOMContentLoaded', function() {
   $('.nav_burger').click(function(){
     $('.overlay').slideToggle('show');
 });
-$('.menumobile_item').click(function() {
+$('.menu-item').find('a').click(function() {
     $('.overlay').slideUp("slow");
 });
-
+// materials tabs
 $('#eco').click(function(){
     $('#ecoimg').addClass   ('active');
     $('#alcimg').removeClass('active');
@@ -21,18 +21,31 @@ $('#fer').click(function(){
     $('#ecoimg').removeClass('active');
     $('#alcimg').removeClass('active');
 });
-
+// scroll of links
 $('a[href^="#"').on('click', function() {
 
   let href = $(this).attr('href');
-
   $('html, body').animate({
       scrollTop: $(href).offset().top
   });
   return false;
 });
+// вывод модального окна кнопкой
+$('.btn_offer').on('click', function() {
+  $('.overback').fadeIn();
+  $('.modal').fadeIn();
+});
+// вывод модального окна в форме
+$('a.order_form_check_link').on('click', function() {
+  $('.overback').fadeIn();
+  $('.modal').fadeIn();
+});
+// Закрытие модального окна
+$('.close').on('click', function() {
+  $('.overback').fadeOut();
+  $('.modal').fadeOut();
 
-
+});
 var swiper = new Swiper('.swiper-container',{
     loop: true,
     slidesPerView: 1,
@@ -59,15 +72,27 @@ var swiper = new Swiper('.swiper-container',{
     models = modelsdiv.querySelectorAll('span'),
     mainform = document.querySelector("#order_form"),
     mark = document.querySelector('#markID');
+    // settings for form (deleting and showing text)
+    document.querySelector('.order_form_check').querySelector('label').querySelector('span').innerHTML = '';
+    document.querySelector('.order_form_btn').value = form_PH.btnPH;
+    document.querySelector('#install_label').innerHTML = form_PH.installPH;
+    mark.getElementsByTagName('option')[0].innerHTML = form_PH.markPH;
+    // settigns for placeholders and inputs
+    mark.getElementsByTagName('option')[0].setAttribute('disabled', "true");
+    document.querySelector('#order_name').setAttribute('placeholder', form_PH.namePH);
+    document.querySelector('#phone').setAttribute('placeholder', form_PH.phonePH);
+    seatcoverV.setAttribute('placeholder', form_PH.seatcoverPH);
+    // modal form
+    document.querySelector('#modal_name').setAttribute('placeholder', form_PH.namePH);
+    document.querySelector('#modal_tel').setAttribute('placeholder', form_PH.phonePH);
+    document.querySelector('.btn_modal').value = form_PH.btnPH;
     let btn_order = document.querySelector('.order_form_btn');
     btn_order.classList.add('btn');
-    seatcoverV.setAttribute('placeholder', "Chose seatcover from catalog");
-    document.querySelector('#phone').setAttribute('placeholder', "Your phone");
-    document.querySelector('#order_name').setAttribute('placeholder', "Your name");
-    let allSections = document.querySelectorAll('select');
+    let allSections = modelsdiv.querySelectorAll('select');
     allSections.forEach((item)=> {
       let firstOption = item.querySelectorAll('option')[0];
-      firstOption.setAttribute('disabled', 'true');
+        firstOption.innerHTML = form_PH.modelPH;
+        firstOption.setAttribute('disabled', "true");
     });
     // block of the input seatcoverV
     let blocker = document.createElement('div');
@@ -82,9 +107,9 @@ var swiper = new Swiper('.swiper-container',{
 
     document.querySelector('.order_cardselected').remove();
     modelsdiv.style.display = "none";
-  tabs[3].classList.add('catalog_tabs_item_active');
+  tabs[2].classList.add('catalog_tabs_item_active');
   allseatcovers.forEach((item)=> {
-    let first_category = tabs[3].dataset.categoryname;
+    let first_category = tabs[2].dataset.categoryname;
     let item_category = item.dataset.category;
     let result = (first_category === item_category) ? item.style.display = "block" : item.style.display = "none";  
   });
@@ -100,11 +125,10 @@ var swiper = new Swiper('.swiper-container',{
       let num;
       allseatcovers.forEach((item)=> {
         let item_category = item.dataset.category;
-        console.log(tab_category === item_category);
         function correct() {
-          fadeIn(item);
+          item.style.display = "block"
         }
-        let result = (tab_category === item_category) ? correct() : item.style.display = "none";
+        let result = (tab_category === item_category) ? correct() : item.style.display = "none";a
         
       });
     }
@@ -119,10 +143,8 @@ var swiper = new Swiper('.swiper-container',{
         clone.innerHTML = target.innerHTML;
         // let clone = target.cloneNode(true);
         formorder.appendChild(clone);
-        // let cart = formorder.querySelector('.catalog_items_item');
-        // cart.classList.remove('catalog_items_item');
-        // cart.classList.add('order_cardselected');
-        seatcoverV.value = clone.querySelector(".catalog_items_item_desc").innerHTML;
+        let title = clone.querySelector(".catalog_items_item_desc").querySelector('p') ? clone.querySelector(".catalog_items_item_desc").querySelector('p').innerHTML : clone.querySelector(".catalog_items_item_desc").innerHTML; 
+        seatcoverV.value = title;
         mainform.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
@@ -135,13 +157,10 @@ var swiper = new Swiper('.swiper-container',{
       let clone = document.createElement('div');
           clone.innerHTML = itemimg.innerHTML;
           clone.classList.add('order_cardselected');
-      // let clone = itemimg.cloneNode(true);
       if (document.querySelector('.order_cardselected')) document.querySelector('.order_cardselected').remove();
       formorder.appendChild(clone);
-      // let cart = formorder.querySelector('.catalog_items_item');
-      // cart.classList.remove('catalog_items_item');
-      // cart.classList.add('order_cardselected');
-      seatcoverV.value = clone.querySelector(".catalog_items_item_desc").innerHTML;
+      let title = clone.querySelector(".catalog_items_item_desc").querySelector('p') ? clone.querySelector(".catalog_items_item_desc").querySelector('p').innerHTML : clone.querySelector(".catalog_items_item_desc").innerHTML; 
+      seatcoverV.value = title;
       mainform.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
@@ -152,26 +171,12 @@ var swiper = new Swiper('.swiper-container',{
   mark.addEventListener('change', function () {
     let value = mark.value;
     modelsdiv.style.display = "block";
-    console.log(value);
     models.forEach((item) => {
       let select_id = item.querySelector('select').id;
-      console.log(select_id);
       let question = (value === select_id) ? item.style.display = "block" : item.style.display = "none";
     });
   });
-  function fadeIn(el) {
-    el.style.display = "block";
-    let opacity = 0;
-    el.style.opacity = opacity;
-    let changeInterval = setInterval(() => {
-      if (el.style.opacity >= 1) {
-        clearInterval(changeInterval);
-      } else {
-        opacity = opacity + 0.05;
-        el.style.opacity = opacity;
-      }
-    }, 5)
-  }
+ 
   $('#phone').mask("+372 99-999-999");
 
 

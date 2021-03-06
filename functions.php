@@ -38,6 +38,7 @@ function seatcovers_styles() {
 add_action('after_setup_theme', 'register_menu');
 function register_menu() {
     register_nav_menu('main_header_menu', 'Меню в шапке');
+    register_nav_menu('main_header_menu_est', 'Меню в шапке (эст)');
     add_theme_support( 'post-thumbnails' );
     set_post_thumbnail_size( 150, 150, true );
 
@@ -89,7 +90,7 @@ function register_post_types(){
         'menu_icon'           => 'dashicons-cart',
         'public'              => true,
         'menu_position'       => 5,
-        'supports'            => [ 'title', 'thumbnail'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+        'supports'            => [ 'title','excerpt', 'thumbnail'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
         'has_archive'         => true,
         'rewrite'             => ['slug' => 'products']
     ] );
